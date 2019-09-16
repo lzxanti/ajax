@@ -14,7 +14,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "{name:" + name + ",age:" + age + "}";
+        return "{\"name\":\"" + name + "\",\"age\":" + age + "}";
     }
 
 
@@ -33,6 +33,9 @@ public class User {
     public User(String name, int age) {
         this.name = name;
         this.age = age;
+    }
+
+    public User() {
     }
 
     public void setAge(int age) {
