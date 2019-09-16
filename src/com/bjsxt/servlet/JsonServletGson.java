@@ -25,10 +25,12 @@ public class JsonServletGson extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
+        String age = req.getParameter("age");
         UserGson user1 = new UserGson(name, 31);
         UserGson user2 = new UserGson(name, 32);
         UserGson user3 = new UserGson(name, 33);
         UserGson user4 = new UserGson(name, 34);
+        System.out.println(name + " " + age);
         ArrayList<Object> list = new ArrayList<>();
         list.add(user1);
         Collections.addAll(list, user2, user3, user4);
