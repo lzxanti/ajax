@@ -1,6 +1,7 @@
 package com.bjsxt.servlet;
 
-import com.bjsxt.pojo.User;
+import com.bjsxt.pojo.UserGson;
+import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 /**
@@ -20,18 +20,18 @@ import java.util.Collections;
  * <p>Version：1.0</p>
  * <p>Description：</p>
  */
-@WebServlet("/json")
-public class JsonServlet extends HttpServlet {
+@WebServlet("/gson")
+public class JsonServletGson extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
-        User user1 = new User(name, 31);
-        User user2 = new User(name, 32);
-        User user3 = new User(name, 33);
-        User user4 = new User(name, 34);
+        UserGson user1 = new UserGson(name, 31);
+        UserGson user2 = new UserGson(name, 32);
+        UserGson user3 = new UserGson(name, 33);
+        UserGson user4 = new UserGson(name, 34);
         ArrayList<Object> list = new ArrayList<>();
         list.add(user1);
         Collections.addAll(list, user2, user3, user4);
-        resp.getWriter().println(list);
+        resp.getWriter().println(new Gson().toJson(list));
     }
 }

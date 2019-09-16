@@ -11,16 +11,16 @@
                 } else {
                     xhr = new ActiveXObject("Microsoft.XMLHTTP");
                 }
-                xhr.open("post", "json", true);
+                xhr.open("post", "gson", true);
                 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhr.onreadystatechange = evalObj2Json;
+                xhr.onreadystatechange = gsonData;
                 xhr.send("name=" + name);
             }
 
-            function evalObj2Json() {
+            function gsonData() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     let result = xhr.responseText;
-                    eval("var users=" + result);
+                    alert(users);
                     for (let user of users) {
                         console.log(user.name);
                         console.log(user.age);
