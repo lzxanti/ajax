@@ -9,4 +9,6 @@ package com.bjsxt.pojo;
  * <p>Description：</p>
  */
 public class User {
+	private String name;
+	private int age;
 }
