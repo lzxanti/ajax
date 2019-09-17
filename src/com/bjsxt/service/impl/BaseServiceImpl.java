@@ -23,4 +23,6 @@ public class BaseServiceImpl<T> {
         System.out.println(clazz.getName());
         mapper = (T) MybatisUtil.openSession(clazz);
     }
+
+
 }

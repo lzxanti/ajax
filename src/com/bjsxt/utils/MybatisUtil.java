@@ -16,6 +16,7 @@ import java.io.IOException;
  * <p>Description：</p>
  */
 public class MybatisUtil {
+    private SqlSession sqlSession;
 
     /**
      * 获取mapper
@@ -28,6 +29,7 @@ public class MybatisUtil {
         SqlSession sqlSession;
         try {
             sqlSession = new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream("mybatis.xml")).openSession();
+            sqlSession.clearCache();
             return sqlSession.getMapper(tClass);
         } catch (IOException e) {
             e.printStackTrace();
@@ -35,5 +37,8 @@ public class MybatisUtil {
         return null;
     }
 
-
+    @Override
+    protected void finalize() {
+        sqlSession.close();
+    }
 }

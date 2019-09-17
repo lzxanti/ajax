@@ -33,6 +33,8 @@ public class PageController extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         String cp = req.getParameter("currentPageNumber");
         String ps = req.getParameter("pageSize");
+        String sname = req.getParameter("sname");
+        String tname = req.getParameter("tname");
         if (StringUtil.isEmpty(ps, cp)) {
             //当前页码数
             int currentPageNumber = Integer.parseInt(cp);
@@ -43,15 +45,11 @@ public class PageController extends HttpServlet {
             int totalPageCount = (int) Math.ceil(((double) totalRowsCount / pageSize));
             int currentNumber = (currentPageNumber - 1) * pageSize;
             PageBean<Student> pageBean = new PageBean<>();
-            System.out.println(pageBean);
             pageBean.setTotalPageCount(totalPageCount);
             pageBean.setPageSize(pageSize);
-            System.out.println(currentNumber);
-            pageBean.setRowsData(service.findStudentByPage(currentNumber, pageSize));
+            pageBean.setRowsData(service.findStudentByPageLikeName(currentNumber, pageSize, sname, tname));
             pageBean.setTotalRowsCount(totalRowsCount);
             pageBean.setCurrentPageNumber(currentPageNumber);
-
-
             resp.getWriter().write(new Gson().toJson(pageBean));
             return;
         }

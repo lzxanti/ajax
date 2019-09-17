@@ -19,4 +19,11 @@ public interface PageMapper {
     int getTotalRowCount();
 
     List<Student> findStudentByPage(@Param("currentPageNumber") int currentPageNumber, @Param("pageSize") int pageSize);
+
+    List<Student> findStudentByPageLikeName(
+            @Param("currentPageNumber") int currentPageNumber,
+            @Param("pageSize") int pageSize,
+            @Param("sname") String sname,
+            @Param("tname") String tname
+    );
 }

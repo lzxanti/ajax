@@ -1,4 +1,4 @@
-a {
+a ,.query{
     background-color: #555555; /* black */
     border: none;
     color: white;
@@ -17,11 +17,15 @@ a {
     background-color: orange;
 }
 
-input[type="text"] {
+input[type="text"], select {
     width: 180px;
     height: 35px;
     border-radius: 6px;
     border: 1px solid #999;
+}
+
+select {
+    width: 100px;
 }
 
 .disabled {
@@ -33,15 +37,15 @@ input[type="text"] {
 }
 
 header input, footer a {
-    margin: 5px 10px;
+    margin: 5px 5px;
 }
 
-table tr td{
+table tr td {
     text-align: center;
 }
 
 .container {
-    width: 1000px;
+    width: 1200px;
     margin: 50px auto;
     text-align: center;
     border: 1px solid red;

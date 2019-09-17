@@ -1,6 +1,7 @@
 package com.bjsxt.service;
 
 import com.bjsxt.pojo.Student;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,6 +15,10 @@ import java.util.List;
  */
 public interface PageService {
     List<Student> findStudent();
+
     int getTotalRowCount();
+
     List<Student> findStudentByPage(int currentPageNumber, int pageSize);
+
+    List<Student> findStudentByPageLikeName(int currentPageNumber, int pageSize, String sname, String tname);
 }

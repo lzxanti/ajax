@@ -32,4 +32,9 @@ public class PageServiceImpl extends BaseServiceImpl<PageMapper> implements Page
     public List<Student> findStudentByPage(int currentPageNumber, int pageSize) {
         return mapper.findStudentByPage(currentPageNumber, pageSize);
     }
+
+    @Override
+    public List<Student> findStudentByPageLikeName(int currentPageNumber, int pageSize, String sname, String tname) {
+        return mapper.findStudentByPageLikeName(currentPageNumber,pageSize,sname,tname);
+    }
 }
