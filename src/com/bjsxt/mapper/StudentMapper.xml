@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjsxt.mapper.StudentMapper">
+
+    <select id="findStudent" resultMap="findStudentMap">
+        select *
+        from student s
+                 join teacher t on s.tid = t.tid
+    </select>
+    <resultMap id="findStudentMap" type="Student">
+        <id property="sid" column="sid"/>
+        <id property="tid" column="tid"/>
+        <result property="sname" column="sname"/>
+        <result property="sage" column="sage"/>
+        <association property="teacher" javaType="Teacher">
+            <id property="tid" column="tid"/>
+            <result property="tname" column="tname"/>
+        </association>
+    </resultMap>
+</mapper>

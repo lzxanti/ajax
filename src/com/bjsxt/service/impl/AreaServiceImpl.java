@@ -3,6 +3,7 @@ package com.bjsxt.service.impl;
 import com.bjsxt.mapper.AreaMapper;
 import com.bjsxt.pojo.Area;
 import com.bjsxt.service.AreaService;
+import com.bjsxt.utils.MybatisUtil;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -22,12 +23,7 @@ public class AreaServiceImpl implements AreaService {
     private static AreaMapper mapper;
 
     static {
-        try {
-            SqlSession sqlSession = new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream("mybatis.xml")).openSession();
-            mapper = sqlSession.getMapper(AreaMapper.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        mapper = MybatisUtil.openSession(AreaMapper.class);
     }
 
     @Override
