@@ -1,0 +1,52 @@
+a {
+    background-color: #555555; /* black */
+    border: none;
+    color: white;
+    border-radius: 4px;
+    padding: 3px 6px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 2px 2px;
+    cursor: pointer;
+}
+
+.active {
+    color: red;
+    background-color: orange;
+}
+
+input[type="text"] {
+    width: 180px;
+    height: 35px;
+    border-radius: 6px;
+    border: 1px solid #999;
+}
+
+.disabled {
+    background-color: #e7e7e7;
+    /*设置蒙版效果*/
+    opacity: 0.5;
+    /*禁止鼠标事件*/
+    pointer-events: none;
+}
+
+header input, footer a {
+    margin: 5px 10px;
+}
+
+table tr td{
+    text-align: center;
+}
+
+.container {
+    width: 1000px;
+    margin: 50px auto;
+    text-align: center;
+    border: 1px solid red;
+}
+
+.container > * {
+    margin-top: 10px;
+}

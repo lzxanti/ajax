@@ -1,5 +1,6 @@
 package com.bjsxt.service.impl;
 
+import com.bjsxt.mapper.PageMapper;
 import com.bjsxt.mapper.StudentMapper;
 import com.bjsxt.pojo.Student;
 import com.bjsxt.service.PageService;
@@ -16,15 +17,19 @@ import java.util.List;
  * <p>Version：1.0</p>
  * <p>Description：</p>
  */
-public class StudentServiceImpl implements StudentService {
-    private static StudentMapper mapper;
-
-    static {
-        mapper = MybatisUtil.openSession(StudentMapper.class);
-    }
-
+public class PageServiceImpl extends BaseServiceImpl<PageMapper> implements PageService {
     @Override
     public List<Student> findStudent() {
         return mapper.findStudent();
+    }
+
+    @Override
+    public int getTotalRowCount() {
+        return mapper.getTotalRowCount();
+    }
+
+    @Override
+    public List<Student> findStudentByPage(int currentPageNumber, int pageSize) {
+        return mapper.findStudentByPage(currentPageNumber, pageSize);
     }
 }
