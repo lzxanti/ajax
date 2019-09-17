@@ -5,7 +5,7 @@
         <script src = "js/jquery-12.js"></script>
         <script>
             $(function () {
-                $.get("student", function (res) {
+                $.get("studentAjax", function (res) {
                     $("#content").empty();
                     $.each(res, function (index, item) {
                         $("#content").append(

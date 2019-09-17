@@ -19,8 +19,8 @@ import java.io.IOException;
  * <p>Version：1.0</p>
  * <p>Description：</p>
  */
-@WebServlet("/student")
-public class StudentController extends HttpServlet {
+@WebServlet("/studentAjax")
+public class StudentAjaxController extends HttpServlet {
     private StudentService service = new StudentServiceImpl();
 
     @Override
