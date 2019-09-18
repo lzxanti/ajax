@@ -12,22 +12,14 @@
         limit #{currentPageNumber},#{pageSize}
     </select>
     <select id="getTotalRowCount" resultType="int">
-        select count(sid)
+        select count(s.sid)
         from student s
-                 join teacher t on s.tid = t.tid
+        join teacher t on s.tid = t.tid
+        <include refid="likeSql"/>
     </select>
     <select id="findStudentByPageLikeName" resultMap="findStudentMap">
         <include refid="queryAll"/>
-        <trim prefix="where" prefixOverrides="and">
-            <if test="null!=sname and sname!=''">
-                <bind name="likeSname" value="'%'+sname+'%'"/>
-                and sname like #{likeSname}
-            </if>
-            <if test="null!=tname and tname!=''">
-                <bind name="likeTname" value="'%'+tname+'%'"/>
-                and tname like #{likeTname}
-            </if>
-        </trim>
+        <include refid="likeSql"/>
         limit #{currentPageNumber},#{pageSize}
     </select>
     <resultMap id="findStudentMap" type="Student">
@@ -44,5 +36,17 @@
         select *
         from student s
                  join teacher t on s.tid = t.tid
+    </sql>
+    <sql id="likeSql">
+        <trim prefix="where" prefixOverrides="and">
+            <if test="null!=sname and sname!=''">
+                <bind name="likeSname" value="'%'+sname+'%'"/>
+                and sname like #{likeSname}
+            </if>
+            <if test="null!=tname and tname!=''">
+                <bind name="likeTname" value="'%'+tname+'%'"/>
+                and tname like #{likeTname}
+            </if>
+        </trim>
     </sql>
 </mapper>

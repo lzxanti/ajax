@@ -34,9 +34,9 @@ $(function () {
             alert("已经是第一页了");
             getData(currentPageNumber, pageSize);
             return false;
-        } else {
-            getData(currentPageNumber -= 1, pageSize);
         }
+        getData(currentPageNumber -= 1, pageSize);
+
     });
 
 
@@ -45,9 +45,9 @@ $(function () {
             alert("已经是最后一页");
             getData(currentPageNumber, pageSize);
             return false;
-        } else {
-            getData(currentPageNumber += 1, pageSize);
         }
+        getData(currentPageNumber += 1, pageSize);
+
     });
     $("#lastPage").on('click', function () {
         getData(totalPageCount, pageSize);
@@ -55,33 +55,10 @@ $(function () {
     $(".query").on('click', function () {
         /*每次点击这个按钮都从第一条记录开始查*/
         currentPageNumber = 1;
-        $tbody.empty();
-        $.get("page", {
-                currentPageNumber: currentPageNumber,
-                pageSize: pageSize,
-                sname: $("#stuName").val().trim(),
-                tname: $("#teaName").val().trim()
-            },
-            function (data) {
-                $.each(data.rowsData, function (index, item) {
-                    $tbody.append(
-                        "<tr>\n" +
-                        "<td>" + item.sid + "</td>\n" +
-                        "<td>" + item.sname + "</td>\n" +
-                        "<td>" + item.sage + "</td>\n" +
-                        "<td>" + item.teacher.tname + "</td>\n" +
-                        " </tr>");
-                });
-                pageSize = data.pageSize;
-                totalPageCount = Math.ceil(data.rowsData.length / pageSize);
-                currentPageNumber = data.currentPageNumber;
-                totalRowsCount = data.totalRowsCount;
-                /*动态添加分页页码*/
-                listPagingPage();
-            }
-            , 'json');
+        getData(currentPageNumber, pageSize)
     })
 });
+
 
 /**
  * 动态添加分页页码
@@ -99,6 +76,8 @@ function listPagingPage() {
     });
     $("#totalPage").html(totalPageCount);
     $("#totalCount").html(totalRowsCount);
+    /*当前连接变色*/
+    $("#" + currentPageNumber).css("background-color", "red");
 
 }
 
@@ -122,6 +101,7 @@ function ajaxCall(data) {
     totalRowsCount = data.totalRowsCount;
     /*动态添加分页页码*/
     listPagingPage();
+
 }
 
 /**
@@ -131,11 +111,16 @@ function ajaxCall(data) {
  */
 function getData(currentPageNumber, pageSize) {
     $tbody.empty();
-    $.get("page", {currentPageNumber: currentPageNumber, pageSize: pageSize},
+    $.get("page", {
+            currentPageNumber: currentPageNumber, pageSize: pageSize, sname: $("#stuName").val().trim(),
+            tname: $("#teaName").val().trim()
+        },
         function (data) {
             ajaxCall(data)
         }
         , 'json');
+
+
 }
 
 

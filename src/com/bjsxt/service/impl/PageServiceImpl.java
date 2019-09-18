@@ -1,11 +1,8 @@
 package com.bjsxt.service.impl;
 
 import com.bjsxt.mapper.PageMapper;
-import com.bjsxt.mapper.StudentMapper;
 import com.bjsxt.pojo.Student;
 import com.bjsxt.service.PageService;
-import com.bjsxt.service.StudentService;
-import com.bjsxt.utils.MybatisUtil;
 
 import java.util.List;
 
@@ -24,8 +21,8 @@ public class PageServiceImpl extends BaseServiceImpl<PageMapper> implements Page
     }
 
     @Override
-    public int getTotalRowCount() {
-        return mapper.getTotalRowCount();
+    public int getTotalRowCount(String sname, String tname) {
+        return mapper.getTotalRowCount(sname,tname);
     }
 
     @Override

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * 作用：
@@ -41,19 +42,12 @@ public class PageController extends HttpServlet {
             //每页显示数
             int pageSize = Integer.parseInt(ps);
             //总的记录数
-            int totalRowsCount = service.getTotalRowCount();
+            int totalRowsCount = service.getTotalRowCount(sname, tname);
             int totalPageCount = (int) Math.ceil(((double) totalRowsCount / pageSize));
             int currentNumber = (currentPageNumber - 1) * pageSize;
-            PageBean<Student> pageBean = new PageBean<>();
-            pageBean.setTotalPageCount(totalPageCount);
-            pageBean.setPageSize(pageSize);
-            pageBean.setRowsData(service.findStudentByPageLikeName(currentNumber, pageSize, sname, tname));
-            pageBean.setTotalRowsCount(totalRowsCount);
-            pageBean.setCurrentPageNumber(currentPageNumber);
+            List<Student> rowsData = service.findStudentByPageLikeName(currentNumber, pageSize, sname, tname);
+            PageBean<Student> pageBean = new PageBean<>(currentPageNumber, pageSize, rowsData, totalPageCount, totalRowsCount);
             resp.getWriter().write(new Gson().toJson(pageBean));
-            return;
         }
-        resp.getWriter().write(new Gson().toJson(service.findStudent()));
-
     }
 }

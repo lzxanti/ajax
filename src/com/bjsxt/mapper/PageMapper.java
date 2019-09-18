@@ -16,7 +16,7 @@ import java.util.List;
 public interface PageMapper {
     List<Student> findStudent();
 
-    int getTotalRowCount();
+    int getTotalRowCount(@Param("sname")String sname,@Param("tname")String tname);
 
     List<Student> findStudentByPage(@Param("currentPageNumber") int currentPageNumber, @Param("pageSize") int pageSize);
 
